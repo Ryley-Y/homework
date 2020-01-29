@@ -27,6 +27,27 @@
 	    }
 	</style>
 	<script type="text/javascript">
+		$.ajax({
+          		type: "GET",
+          		url: "http://spartacodingclub.shop/order ",
+          		data:{},
+          		success: function(response) {
+          			var orders = response['orders']
+          			for (var i = 0; i < orders.length; i++){
+          				var pre_address = orders[i]['address'];
+          				var pre_count = orders[i]['count'];
+          				var pre_name = orders[i]['name'];
+          				var pre_phone = orders[i]['phone'];
+          				var html = '<tr>\
+	      								<td>'+pre_name+'</td>\
+	      								<td>'+pre_count+'</td>\
+	      								<td>'+pre_address+'</td>\
+	      								<td>'+pre_phone+'</td>\
+      								</tr>';
+          				$('#order_table').append(html);
+          			}
+          		}
+          	})
 		function q1(){
 			if($('#name_order').val() == ''){
 				alert('주문자 성함을 입력해주세요.')
